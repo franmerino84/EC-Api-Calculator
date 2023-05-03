@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EC.Api.Calculator.Infrastructure\EC.Api.Calculator.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

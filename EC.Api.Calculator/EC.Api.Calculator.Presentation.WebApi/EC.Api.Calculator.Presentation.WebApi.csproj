@@ -7,7 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="NLog.Extensions.Logging" Version="5.2.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EC.Api.Calculator.Application\EC.Api.Calculator.Application.csproj" />
+    <ProjectReference Include="..\EC.Api.Calculator.Infrastructure\EC.Api.Calculator.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
