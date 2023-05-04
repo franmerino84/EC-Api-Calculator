@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using EC.Api.Calculator.Infrastructure.Mapping;
-using EC.Api.Calculator.Presentation.WebApi.Controllers;
+using EC.Api.Calculator.Presentation.WebApi.Controllers.Calculators;
 
 namespace EC.Api.Calculator.Presentation.WebApi.Mapping
 {

@@ -2,7 +2,7 @@
 using EC.Api.Calculator.Domain.Entities;
 using System.Collections.Concurrent;
 
-namespace EC.Api.Calculator.Infrastructure.Persistence.Repositories
+namespace EC.Api.Calculator.Infrastructure.Persistence.Repositories.JournalEntries
 {
     public class JournalEntryRepository : IJournalEntryRepository
     {
@@ -13,11 +13,11 @@ namespace EC.Api.Calculator.Infrastructure.Persistence.Repositories
             _context = new ConcurrentDictionary<string, List<JournalEntry>>();
         }
 
-        public void Insert(JournalEntry journalEntry) 
+        public void Insert(JournalEntry journalEntry)
         {
             lock (_context)
             {
-                var journals = _context[journalEntry.TrackingId];
+                var journals = _context.FirstOrDefault(x => x.Key == journalEntry.TrackingId).Value;
 
                 journals ??= new List<JournalEntry>();
 
@@ -27,7 +27,7 @@ namespace EC.Api.Calculator.Infrastructure.Persistence.Repositories
             }
         }
 
-        public IEnumerable<JournalEntry> GetByTrackingId(string trackingId) => 
+        public IEnumerable<JournalEntry> GetByTrackingId(string trackingId) =>
             _context[trackingId];
     }
 }

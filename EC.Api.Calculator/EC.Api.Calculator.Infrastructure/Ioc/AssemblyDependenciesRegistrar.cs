@@ -23,9 +23,18 @@ namespace EC.Api.Calculator.Infrastructure.Ioc
 
         public static void AddDependenciesFromAssembly(this IServiceCollection services, Assembly assembly)
         {
-            assembly.GetTypes().Where(type => type.IsSubclassOf(typeof(IDependenciesRegistrar)))
+            assembly.GetTypes().Where(type => typeof(IDependenciesRegistrar).IsAssignableFrom(type))
                 .ToList()
-                .ForEach(type => ((IDependenciesRegistrar)type).Register(services));
+                .ForEach(type => GetDependenciesRegistrarInstance(type).Register(services));
+        }
+
+        private static IDependenciesRegistrar GetDependenciesRegistrarInstance(Type type)
+        {
+            var constructor = type.GetConstructor(Type.EmptyTypes);
+
+            return constructor == null
+                ? throw new ConstructorWithoutParametersDoesntExistException(type)
+                : (IDependenciesRegistrar)constructor.Invoke(Array.Empty<object>());
         }
     }
 }

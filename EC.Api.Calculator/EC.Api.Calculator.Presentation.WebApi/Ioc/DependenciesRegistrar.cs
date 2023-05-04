@@ -1,4 +1,5 @@
 ﻿using EC.Api.Calculator.Domain.Ioc;
+using EC.Api.Calculator.Infrastructure.Persistence.Ioc;
 
 namespace EC.Api.Calculator.Presentation.WebApi.Ioc
 {
@@ -8,6 +9,7 @@ namespace EC.Api.Calculator.Presentation.WebApi.Ioc
         {
             services.AddApiDependencies();
             services.AddDomainDependencies();
+            services.AddPersistenceDependencies();
             return services;
         }
     }
