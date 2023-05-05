@@ -1,8 +1,5 @@
-El mensaje de error cuando se recibo un tipo de dato diferente en un campo es feo
-Revisar http 1.1
-Kestrel
-Unit of work?
 Hacer cliente
 Tests api
 Tests cliente
+Unit of work?
 Readmes

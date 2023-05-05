@@ -33,7 +33,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EC.Api.Calculator.Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EC.Api.Calculator.Test.Domain", "EC.Api.Calculator.Test.Domain\EC.Api.Calculator.Test.Domain.csproj", "{99F5428F-C301-450B-9496-3D171B9A48D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EC.Api.Calculator.Infrastructure", "EC.Api.Calculator.Infrastructure\EC.Api.Calculator.Infrastructure.csproj", "{B0389A3F-B3FA-4383-B5B6-AD5AADB4FE07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EC.Api.Calculator.Infrastructure", "EC.Api.Calculator.Infrastructure\EC.Api.Calculator.Infrastructure.csproj", "{B0389A3F-B3FA-4383-B5B6-AD5AADB4FE07}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C08D5392-57E2-4E4A-998F-0B0FF908C313}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		Todo.txt = Todo.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
