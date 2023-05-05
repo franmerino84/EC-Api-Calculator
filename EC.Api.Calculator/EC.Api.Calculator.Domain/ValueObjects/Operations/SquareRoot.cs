@@ -1,4 +1,6 @@
-﻿namespace EC.Api.Calculator.Domain.ValueObjects.Operations
+﻿using EC.Api.Calculator.Domain.Exceptions;
+
+namespace EC.Api.Calculator.Domain.ValueObjects.Operations
 {
     public class SquareRoot : Operation
     {
@@ -21,7 +23,7 @@
             var floorSqrt = (int)Math.Floor(exactSqrt);
 
             if (floorSqrt != exactSqrt)
-                throw new ArgumentException("Cannot apply square root to parameter", nameof(number));
+                throw new SquareRootNotExactException();
 
             _square = floorSqrt;
         }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EC.Api.Calculator.Application.Exceptions;
 using EC.Api.Calculator.Domain.Abstractions.Persistence.Repositories;
 using EC.Api.Calculator.Domain.Entities;
 using EC.Api.Calculator.Domain.Services.CalculationFormatters.Subtractions;
@@ -37,7 +38,15 @@ namespace EC.Api.Calculator.Application.Calculators.Subtractions
             {
                 var journalEntry = new JournalEntry(request.TrackingId, _operationFormatter.FormatOperatorName(), _calculationFormatter.FormatOperation(subtraction));
 
-                _journalEntryRepository.Insert(journalEntry);
+                try
+                {
+                    _journalEntryRepository.Insert(journalEntry);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Couldn't store the journal entry for a subtraction.");
+                    throw new UnexpectedApplicationException(null, ex);
+                }
 
                 _logger.LogInformation("Subtraction successfully stored in the journal.");
             }

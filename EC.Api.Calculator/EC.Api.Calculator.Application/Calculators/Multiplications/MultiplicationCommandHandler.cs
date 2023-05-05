@@ -38,7 +38,15 @@ namespace EC.Api.Calculator.Application.Calculators.Multiplications
             {
                 var journalEntry = new JournalEntry(request.TrackingId, _operationFormatter.FormatOperatorName(), _calculationFormatter.FormatOperation(multiplication));
 
-                _journalEntryRepository.Insert(journalEntry);
+                try
+                {
+                    _journalEntryRepository.Insert(journalEntry);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Couldn't store the journal entry for a multiplication.");
+                    throw new UnexpectedApplicationException(null, ex);
+                }
 
                 _logger.LogInformation("Multiplication successfully stored in the journal.");
             }

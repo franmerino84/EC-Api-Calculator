@@ -18,7 +18,7 @@ namespace EC.Api.Calculator.Application.Calculators.Additions
         private readonly IAdditionOperationFormatter _operationFormatter;
         private readonly IAdditionCalculationFormatter _calculationFormatter;
 
-        public AdditionCommandHandler(IJournalEntryRepository journalEntryRepository, IMapper mapper, ILogger<AdditionCommandHandler> logger, 
+        public AdditionCommandHandler(IJournalEntryRepository journalEntryRepository, IMapper mapper, ILogger<AdditionCommandHandler> logger,
             IAdditionOperationFormatter operationFormatter, IAdditionCalculationFormatter calculationFormatter)
         {
             _journalEntryRepository = journalEntryRepository;
@@ -38,7 +38,15 @@ namespace EC.Api.Calculator.Application.Calculators.Additions
             {
                 var journalEntry = new JournalEntry(request.TrackingId, _operationFormatter.FormatOperatorName(), _calculationFormatter.FormatOperation(addition));
 
-                _journalEntryRepository.Insert(journalEntry);
+                try
+                {
+                    _journalEntryRepository.Insert(journalEntry);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Couldn't store the journal entry for an addition.");
+                    throw new UnexpectedApplicationException(null, ex);
+                }
 
                 _logger.LogInformation("Addition successfully stored in the journal.");
             }

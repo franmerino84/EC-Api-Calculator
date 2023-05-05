@@ -2,14 +2,14 @@
 
 namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Calculators.Additions
 {
-    public class CalculatorAddRequestDto
+    public class CalculatorAdditionRequestDto
     {
-        public CalculatorAddRequestDto(List<int> addends)
+        public CalculatorAdditionRequestDto(List<int> addends)
         {
             Addends = addends;
         }
 
-        [EnsureMinimumElements(2, ErrorMessage = $"{nameof(Addends)} must contain at least two addends")]
+        [EnsureMinimumElements(2, ErrorMessage = $"{nameof(Addends)} must contain at least two numbers")]
         public List<int> Addends { get; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EC.Api.Calculator.Application.Exceptions;
 using EC.Api.Calculator.Domain.Abstractions.Persistence.Repositories;
 using EC.Api.Calculator.Domain.Entities;
 using EC.Api.Calculator.Domain.Services.CalculationFormatters.Divisions;
@@ -37,7 +38,15 @@ namespace EC.Api.Calculator.Application.Calculators.Divisions
             {
                 var journalEntry = new JournalEntry(request.TrackingId, _operationFormatter.FormatOperatorName(), _calculationFormatter.FormatOperation(division));
 
-                _journalEntryRepository.Insert(journalEntry);
+                try
+                {
+                    _journalEntryRepository.Insert(journalEntry);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Couldn't store the journal entry for a division.");
+                    throw new UnexpectedApplicationException(null, ex);
+                }
 
                 _logger.LogInformation("Division successfully stored in the journal.");
             }
@@ -57,10 +66,10 @@ namespace EC.Api.Calculator.Application.Calculators.Divisions
                 throw new ArgumentNullException(nameof(request));
             }
 
-            if (request.Dividend == 0)
+            if (request.Divisor == 0)
             {
-                _logger.LogError("Tried to calculate a division with dividend value as 0.");
-                throw new DivideByZeroException("Dividend cannot be zero");
+                _logger.LogError("Tried to calculate a division with divisor value as 0.");
+                throw new DivideByZeroException("Divisor cannot be zero");
             }
         }
     }

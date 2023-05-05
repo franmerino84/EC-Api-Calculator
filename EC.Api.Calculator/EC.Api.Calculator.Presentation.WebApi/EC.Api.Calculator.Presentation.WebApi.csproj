@@ -17,11 +17,4 @@
     <ProjectReference Include="..\EC.Api.Calculator.Infrastructure\EC.Api.Calculator.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\Calculators\Divisions\" />
-    <Folder Include="Controllers\Calculators\Multiplications\" />
-    <Folder Include="Controllers\Calculators\Subtractions\" />
-    <Folder Include="Controllers\Calculators\SquareRoots\" />
-  </ItemGroup>
-
 </Project>
