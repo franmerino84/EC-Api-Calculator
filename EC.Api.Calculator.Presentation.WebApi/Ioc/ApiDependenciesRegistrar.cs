@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using NLog.Extensions.Logging;
 using System.Net;
 
+
+
 namespace EC.Api.Calculator.Presentation.WebApi.Ioc
 {
     public static class ApiDependenciesRegistrar
@@ -16,17 +18,13 @@ namespace EC.Api.Calculator.Presentation.WebApi.Ioc
             services.AddControllers()
                 .AddJsonOptions(options =>
                 {
-                    options.JsonSerializerOptions.Converters.Add(new DateTimeConverter());
+                    options.JsonSerializerOptions.Converters.Add(new DateTimeConverter());   
                 })
                 .ConfigureApiBehaviorOptions(options=>
                 {
                     options.InvalidModelStateResponseFactory = context =>
-                        new UnprocessableEntityObjectResult(
-                            new ApplicationErrorBody(
-                                ErrorCode.InvalidDataModel, 
-                                (int) HttpStatusCode.UnprocessableEntity, 
-                                string.Join(" | ",context.ModelState.Values.SelectMany(v => v.Errors).Select(x=>x.ErrorMessage))));                    
-                    });
+                        context.GetDefaultInvalidDataModelUnprocessableEntityObjectResult();                        
+                });
 
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
@@ -44,10 +42,7 @@ namespace EC.Api.Calculator.Presentation.WebApi.Ioc
             });
             return services;
         }
+
+      
     }
 }
-
-
-
-
-
