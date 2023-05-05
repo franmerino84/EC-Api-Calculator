@@ -2,8 +2,10 @@
 using EC.Api.Calculator.Application.Exceptions;
 using EC.Api.Calculator.Domain.Exceptions;
 using EC.Api.Calculator.Presentation.WebApi.Common;
+using EC.Api.Calculator.Presentation.WebApi.Common.Errors;
 using EC.Api.Calculator.Presentation.WebApi.Controllers.Calculators.SquareRoots;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Calculators
 {
@@ -11,7 +13,7 @@ namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Calculators
     {
         [HttpPost]
         [Route("sqrt")]
-        public async Task<IActionResult> SquareRoot([FromBody] CalculatorSquareRootRequestDto requestDto, [FromHeader(Name = Headers.TrackingId)] string? trackingId)
+        public async Task<IActionResult> SquareRoot([FromBody] CalculatorSquareRootRequestDto requestDto, [FromHeader(Name = Header.TrackingId)] string? trackingId)
         {
             try
             {
@@ -25,11 +27,15 @@ namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Calculators
             }
             catch (SquareRootNotExactException)
             {
-                return BadRequest($"The square root of {requestDto.Number} is not exact");
+                return UnprocessableEntity(
+                    new ApplicationErrorBody(
+                        ErrorCode.InvalidDataModel, 
+                        (int)HttpStatusCode.UnprocessableEntity, 
+                        $"The square root of {requestDto.Number} is not exact."));
             }
             catch (UnexpectedApplicationException)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return this.DefaultUnexpectedError();
             }
         }
     }

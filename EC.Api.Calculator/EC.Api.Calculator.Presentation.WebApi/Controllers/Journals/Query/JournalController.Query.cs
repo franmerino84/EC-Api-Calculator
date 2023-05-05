@@ -1,5 +1,6 @@
 ﻿using EC.Api.Calculator.Application.Exceptions;
 using EC.Api.Calculator.Application.Journals.GetById;
+using EC.Api.Calculator.Presentation.WebApi.Common.Errors;
 using EC.Api.Calculator.Presentation.WebApi.Controllers.Journals.Query;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,7 +24,7 @@ namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Journals
             }
             catch (UnexpectedApplicationException)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return this.DefaultUnexpectedError();
             }
         }
     }

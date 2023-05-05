@@ -1,8 +1,11 @@
 ﻿using EC.Api.Calculator.Application.Calculators.Additions;
 using EC.Api.Calculator.Infrastructure.Logging;
+using EC.Api.Calculator.Presentation.WebApi.Common.Errors;
 using EC.Api.Calculator.Presentation.WebApi.Configuration.OutputFormatters;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using NLog.Extensions.Logging;
+using System.Net;
 
 namespace EC.Api.Calculator.Presentation.WebApi.Ioc
 {
@@ -14,7 +17,16 @@ namespace EC.Api.Calculator.Presentation.WebApi.Ioc
                 .AddJsonOptions(options =>
                 {
                     options.JsonSerializerOptions.Converters.Add(new DateTimeConverter());
-                });
+                })
+                .ConfigureApiBehaviorOptions(options=>
+                {
+                    options.InvalidModelStateResponseFactory = context =>
+                        new UnprocessableEntityObjectResult(
+                            new ApplicationErrorBody(
+                                ErrorCode.InvalidDataModel, 
+                                (int) HttpStatusCode.UnprocessableEntity, 
+                                string.Join(" | ",context.ModelState.Values.SelectMany(v => v.Errors).Select(x=>x.ErrorMessage))));                    
+                    });
 
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
@@ -34,3 +46,8 @@ namespace EC.Api.Calculator.Presentation.WebApi.Ioc
         }
     }
 }
+
+
+
+
+

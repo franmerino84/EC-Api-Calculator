@@ -1,4 +1,4 @@
-Revisar 3.9. Generic/Common Error Responses del pdf que hay cosas que no cuadran
+El mensaje de error cuando se recibo un tipo de dato diferente en un campo es feo
 Revisar http 1.1
 Kestrel
 Unit of work?

@@ -1,6 +1,7 @@
 ﻿using EC.Api.Calculator.Application.Calculators.Additions;
 using EC.Api.Calculator.Application.Exceptions;
 using EC.Api.Calculator.Presentation.WebApi.Common;
+using EC.Api.Calculator.Presentation.WebApi.Common.Errors;
 using EC.Api.Calculator.Presentation.WebApi.Controllers.Calculators.Additions;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,7 +11,7 @@ namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Calculators
     {
         [HttpPost]
         [Route("add")]
-        public async Task<IActionResult> Addition([FromBody] CalculatorAdditionRequestDto requestDto, [FromHeader(Name = Headers.TrackingId)] string? trackingId)
+        public async Task<IActionResult> Addition([FromBody] CalculatorAdditionRequestDto requestDto, [FromHeader(Name = Header.TrackingId)] string? trackingId)
         {
             try
             {
@@ -24,7 +25,7 @@ namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Calculators
             }
             catch (UnexpectedApplicationException)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return this.DefaultUnexpectedError();
             }
         }
     }
