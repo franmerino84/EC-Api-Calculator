@@ -15,13 +15,14 @@ namespace EC.Api.Calculator.Presentation.WebApi.Ioc
 
         private static IMapper CreateMapper()
         {
-            MapperConfiguration mappingConfig = new(mc =>
+            MapperConfiguration mappingConfiguration = new(mc =>
             {
                 mc.AddApiProfiles();
                 mc.AddApplicationProfiles();
             });
+            mappingConfiguration.AssertConfigurationIsValid();
 
-            return mappingConfig.CreateMapper();
+            return mappingConfiguration.CreateMapper();
         }
 
 

@@ -1,5 +1,6 @@
 ﻿using EC.Api.Calculator.Application.Calculators.Additions;
 using EC.Api.Calculator.Infrastructure.Logging;
+using EC.Api.Calculator.Presentation.WebApi.Configuration.OutputFormatters;
 using MediatR;
 using NLog.Extensions.Logging;
 
@@ -9,7 +10,12 @@ namespace EC.Api.Calculator.Presentation.WebApi.Ioc
     {
         public static IServiceCollection AddApiDependencies(this IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.Converters.Add(new DateTimeConverter());
+                });
+
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddMappings();

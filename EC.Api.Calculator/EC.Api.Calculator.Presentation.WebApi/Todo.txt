@@ -1,0 +1,8 @@
+Revisar 3.9. Generic/Common Error Responses del pdf que hay cosas que no cuadran
+Revisar http 1.1
+Kestrel
+Unit of work?
+Hacer cliente
+Tests api
+Tests cliente
+Readmes

@@ -27,7 +27,12 @@ namespace EC.Api.Calculator.Infrastructure.Persistence.Repositories.JournalEntri
             }
         }
 
-        public IEnumerable<JournalEntry> GetByTrackingId(string trackingId) =>
-            _context[trackingId];
+        public IEnumerable<JournalEntry> GetByTrackingId(string trackingId)
+        {
+            if(!_context.ContainsKey(trackingId))
+                return Enumerable.Empty<JournalEntry>();
+            
+            return _context[trackingId].OrderBy(x => x.Timestamp);
+        }
     }
 }

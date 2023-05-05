@@ -20,7 +20,7 @@
 
             app.UseAuthorization();
 
-            app.MapControllers();
+            app.MapControllers();          
 
             return app;
         }
