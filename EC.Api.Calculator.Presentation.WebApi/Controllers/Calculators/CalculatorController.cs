@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Calculators
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public partial class CalculatorController : ControllerBase
     {
