@@ -1,4 +1,4 @@
-﻿namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Calculators.Multiplications
+﻿namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Calculators.Multiplications.Dtos
 {
     public class CalculatorMultiplicationResponseDto
     {

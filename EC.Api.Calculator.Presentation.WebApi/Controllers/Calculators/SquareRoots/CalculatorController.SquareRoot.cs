@@ -3,7 +3,7 @@ using EC.Api.Calculator.Application.Exceptions;
 using EC.Api.Calculator.Domain.Exceptions;
 using EC.Api.Calculator.Presentation.WebApi.Common;
 using EC.Api.Calculator.Presentation.WebApi.Common.Errors;
-using EC.Api.Calculator.Presentation.WebApi.Controllers.Calculators.SquareRoots;
+using EC.Api.Calculator.Presentation.WebApi.Controllers.Calculators.SquareRoots.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 

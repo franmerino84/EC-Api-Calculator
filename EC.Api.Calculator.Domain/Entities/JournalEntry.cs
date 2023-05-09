@@ -1,6 +1,4 @@
-﻿using EC.Api.Calculator.Domain.ValueObjects.Operations;
-
-namespace EC.Api.Calculator.Domain.Entities
+﻿namespace EC.Api.Calculator.Domain.Entities
 {
     public class JournalEntry
     {

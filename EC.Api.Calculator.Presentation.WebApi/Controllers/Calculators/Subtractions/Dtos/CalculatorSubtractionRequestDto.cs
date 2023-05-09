@@ -1,4 +1,4 @@
-﻿namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Calculators.Subtractions
+﻿namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Calculators.Subtractions.Dtos
 {
     public class CalculatorSubtractionRequestDto
     {

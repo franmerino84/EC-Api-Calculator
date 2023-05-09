@@ -1,4 +1,4 @@
-﻿namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Calculators.Divisions
+﻿namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Calculators.Divisions.Dtos
 {
     public class CalculatorDivisionResponseDto
     {

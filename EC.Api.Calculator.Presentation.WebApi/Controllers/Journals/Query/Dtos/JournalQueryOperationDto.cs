@@ -1,8 +1,8 @@
-﻿namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Journals.Query
+﻿namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Journals.Query.Dtos
 {
-    public class JournalQueryOperation
+    public class JournalQueryOperationDto
     {
-        public JournalQueryOperation(string operation, string calculation, DateTime date)
+        public JournalQueryOperationDto(string operation, string calculation, DateTime date)
         {
             Operation = operation;
             Calculation = calculation;

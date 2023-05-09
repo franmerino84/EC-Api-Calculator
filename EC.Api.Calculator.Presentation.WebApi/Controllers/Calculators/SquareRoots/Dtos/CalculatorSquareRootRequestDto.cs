@@ -1,4 +1,4 @@
-﻿namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Calculators.SquareRoots
+﻿namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Calculators.SquareRoots.Dtos
 {
     public class CalculatorSquareRootRequestDto
     {

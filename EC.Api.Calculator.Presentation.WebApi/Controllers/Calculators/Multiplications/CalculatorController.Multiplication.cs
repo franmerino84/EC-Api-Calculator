@@ -2,7 +2,7 @@
 using EC.Api.Calculator.Application.Exceptions;
 using EC.Api.Calculator.Presentation.WebApi.Common;
 using EC.Api.Calculator.Presentation.WebApi.Common.Errors;
-using EC.Api.Calculator.Presentation.WebApi.Controllers.Calculators.Multiplications;
+using EC.Api.Calculator.Presentation.WebApi.Controllers.Calculators.Multiplications.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Calculators

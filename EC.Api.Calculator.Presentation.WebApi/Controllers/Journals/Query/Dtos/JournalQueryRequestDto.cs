@@ -1,4 +1,4 @@
-﻿namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Journals.Query
+﻿namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Journals.Query.Dtos
 {
     public class JournalQueryRequestDto
     {

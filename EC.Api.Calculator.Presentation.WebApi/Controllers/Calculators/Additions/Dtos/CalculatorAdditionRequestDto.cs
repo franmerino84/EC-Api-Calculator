@@ -1,6 +1,6 @@
 ﻿using EC.Api.Calculator.Infrastructure.Validation.Validators;
 
-namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Calculators.Additions
+namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Calculators.Additions.Dtos
 {
     public class CalculatorAdditionRequestDto
     {

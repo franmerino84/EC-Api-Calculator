@@ -1,7 +1,7 @@
 ﻿using EC.Api.Calculator.Application.Exceptions;
 using EC.Api.Calculator.Application.Journals.GetById;
 using EC.Api.Calculator.Presentation.WebApi.Common.Errors;
-using EC.Api.Calculator.Presentation.WebApi.Controllers.Journals.Query;
+using EC.Api.Calculator.Presentation.WebApi.Controllers.Journals.Query.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Journals
