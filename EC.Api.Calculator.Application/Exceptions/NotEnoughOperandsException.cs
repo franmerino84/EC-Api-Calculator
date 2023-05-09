@@ -3,7 +3,7 @@
 namespace EC.Api.Calculator.Application.Exceptions
 {
     [Serializable]
-    internal class NotEnoughOperandsException : Exception
+    public class NotEnoughOperandsException : Exception
     {
         public NotEnoughOperandsException()
         {

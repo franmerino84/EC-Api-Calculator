@@ -1,7 +1,7 @@
-Tests api
-	api journal
+Tests api	
 	application
-	persistence
+		addition
+		rest
 	test dependencies?
 Tests cliente
 Unit of work?
