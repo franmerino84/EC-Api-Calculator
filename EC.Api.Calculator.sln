@@ -41,6 +41,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Test", "5. Test", "{A3C3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.4. Presentation", "5.4. Presentation", "{CE251B98-054F-4491-AC2F-23608D1FE50E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.3. Infrastructure", "5.3. Infrastructure", "{563F35DE-A909-4F96-803C-CCD252E6CBB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EC.Api.Calculator.Test.Infrastructure.Persistence", "EC.Api.Calculator.Test.Infrastructure.Persistence\EC.Api.Calculator.Test.Infrastructure.Persistence.csproj", "{C825244C-9EF5-4002-9A19-4AFC6AA1E29D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +83,10 @@ Global
 		{32AB056D-59B4-4CE1-B545-B0473208A43E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32AB056D-59B4-4CE1-B545-B0473208A43E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32AB056D-59B4-4CE1-B545-B0473208A43E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C825244C-9EF5-4002-9A19-4AFC6AA1E29D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C825244C-9EF5-4002-9A19-4AFC6AA1E29D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C825244C-9EF5-4002-9A19-4AFC6AA1E29D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C825244C-9EF5-4002-9A19-4AFC6AA1E29D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,6 +103,8 @@ Global
 		{7BD57628-5074-4E40-B92C-307DEAA31A40} = {83BE5999-F2AF-4855-A717-26B80E7FCF68}
 		{32AB056D-59B4-4CE1-B545-B0473208A43E} = {CE251B98-054F-4491-AC2F-23608D1FE50E}
 		{CE251B98-054F-4491-AC2F-23608D1FE50E} = {A3C374BC-5336-4D96-8365-F036F7621A20}
+		{563F35DE-A909-4F96-803C-CCD252E6CBB4} = {A3C374BC-5336-4D96-8365-F036F7621A20}
+		{C825244C-9EF5-4002-9A19-4AFC6AA1E29D} = {563F35DE-A909-4F96-803C-CCD252E6CBB4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9A904FB5-E089-4885-B012-170E49F7B2AF}
