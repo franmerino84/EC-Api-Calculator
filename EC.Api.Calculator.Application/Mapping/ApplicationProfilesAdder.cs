@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using EC.Api.Calculator.Application.Calculators.Additions;
+using EC.Api.Calculator.Application.Calculators.Commands.Additions;
 using EC.Api.Calculator.Infrastructure.Mapping;
 
 namespace EC.Api.Calculator.Application.Mapping

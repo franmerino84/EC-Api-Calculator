@@ -1,4 +1,6 @@
-﻿namespace EC.Api.Calculator.Domain.Entities
+﻿using EC.Api.Calculator.Infrastructure.StaticAdapters;
+
+namespace EC.Api.Calculator.Domain.Entities
 {
     public class JournalEntry
     {
@@ -8,7 +10,7 @@
             TrackingId = trackingId;
             Operation = operation;
             Calculation = calculation;
-            Timestamp = DateTime.Now;
+            Timestamp = DateTimeProvider.Now;
         }
 
         public Guid Id { get; }

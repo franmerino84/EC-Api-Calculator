@@ -1,5 +1,5 @@
 ﻿using EC.Api.Calculator.Application.Exceptions;
-using EC.Api.Calculator.Application.Journals.GetById;
+using EC.Api.Calculator.Application.Journals.Queries.GetByTrackingId;
 using EC.Api.Calculator.Presentation.WebApi.Common.Errors;
 using EC.Api.Calculator.Presentation.WebApi.Controllers.Journals.Query.Dtos;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +14,7 @@ namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Journals
         {
             try
             {
-                var command = new GetJournalByTrackingIdCommand(requestDto.Id);
+                var command = new GetJournalByTrackingIdQuery(requestDto.Id);
 
                 var response = await _mediator.Send(command);
 

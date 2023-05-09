@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EC.Api.Calculator.Domain\EC.Api.Calculator.Domain.csproj" />
+    <ProjectReference Include="..\EC.Api.Calculator.Test.Helpers\EC.Api.Calculator.Test.Helpers.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-﻿using EC.Api.Calculator.Application.Calculators.Divisions;
+﻿using EC.Api.Calculator.Application.Calculators.Commands.Divisions;
 using EC.Api.Calculator.Application.Exceptions;
 using EC.Api.Calculator.Presentation.WebApi.Common;
 using EC.Api.Calculator.Presentation.WebApi.Common.Errors;

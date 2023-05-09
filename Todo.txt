@@ -1,5 +1,8 @@
-Hacer cliente
 Tests api
+	api journal
+	application
+	persistence
+	test dependencies?
 Tests cliente
 Unit of work?
 Readmes

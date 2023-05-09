@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using EC.Api.Calculator.Application.Journals;
-using EC.Api.Calculator.Application.Journals.GetById;
+using EC.Api.Calculator.Application.Journals.Queries.GetByTrackingId;
 using EC.Api.Calculator.Presentation.WebApi.Controllers.Journals.Query.Dtos;
 
 namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Journals.Query
@@ -10,7 +10,7 @@ namespace EC.Api.Calculator.Presentation.WebApi.Controllers.Journals.Query
         public JournalQueryMappingProfile()
         {
             CreateMap<JournalOperation, JournalQueryOperationDto>();
-            CreateMap<GetJournalByTrackingIdCommandResponse, JournalQueryResponseDto>();
+            CreateMap<GetJournalByTrackingIdQueryResponse, JournalQueryResponseDto>();
         }
     }
 }

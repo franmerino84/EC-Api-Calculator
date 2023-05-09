@@ -1,4 +1,4 @@
-﻿using EC.Api.Calculator.Application.Calculators.SquareRoots;
+﻿using EC.Api.Calculator.Application.Calculators.Commands.SquareRoots;
 using EC.Api.Calculator.Application.Exceptions;
 using EC.Api.Calculator.Domain.Exceptions;
 using EC.Api.Calculator.Presentation.WebApi.Common;

@@ -1,11 +1,9 @@
-﻿using EC.Api.Calculator.Application.Calculators.Additions;
+﻿using EC.Api.Calculator.Application.Calculators.Commands.Additions;
 using EC.Api.Calculator.Infrastructure.Logging;
 using EC.Api.Calculator.Presentation.WebApi.Common.Errors;
 using EC.Api.Calculator.Presentation.WebApi.Configuration.OutputFormatters;
 using MediatR;
-using Microsoft.AspNetCore.Mvc;
 using NLog.Extensions.Logging;
-using System.Net;
 
 
 

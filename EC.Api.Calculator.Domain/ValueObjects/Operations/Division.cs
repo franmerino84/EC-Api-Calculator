@@ -9,6 +9,7 @@
         {
             if (divisor == 0)
                 throw new ArgumentException("Divisor cannot be zero", nameof(divisor));
+
             Dividend = dividend;
             Divisor = divisor;
             Operate();

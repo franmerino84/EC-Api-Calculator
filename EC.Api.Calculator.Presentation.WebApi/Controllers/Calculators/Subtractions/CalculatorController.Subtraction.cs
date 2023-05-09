@@ -1,4 +1,4 @@
-﻿using EC.Api.Calculator.Application.Calculators.Subtractions;
+﻿using EC.Api.Calculator.Application.Calculators.Commands.Subtractions;
 using EC.Api.Calculator.Application.Exceptions;
 using EC.Api.Calculator.Presentation.WebApi.Common;
 using EC.Api.Calculator.Presentation.WebApi.Common.Errors;
