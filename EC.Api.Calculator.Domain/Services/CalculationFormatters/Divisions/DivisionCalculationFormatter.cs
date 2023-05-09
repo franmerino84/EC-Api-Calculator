@@ -4,7 +4,7 @@ namespace EC.Api.Calculator.Domain.Services.CalculationFormatters.Divisions
 {
     public class DivisionCalculationFormatter : IDivisionCalculationFormatter
     {
-        public string FormatOperation(Division operation) =>
+        public string FormatCalculation(Division operation) =>
             $"{operation.Dividend} / {operation.Divisor} = {operation.Quotient} % {operation.Remainder}";
     }
 }

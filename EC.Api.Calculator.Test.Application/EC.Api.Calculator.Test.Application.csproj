@@ -19,14 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Calculators\Commands\Divisions\" />
-    <Folder Include="Calculators\Commands\Multiplications\" />
-    <Folder Include="Calculators\Commands\Subtractions\" />
-    <Folder Include="Calculators\Commands\SquareRoots\" />
-    <Folder Include="Journals\Queries\GetByTrackingId\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\EC.Api.Calculator.Application\EC.Api.Calculator.Application.csproj" />
     <ProjectReference Include="..\EC.Api.Calculator.Test.Helpers\EC.Api.Calculator.Test.Helpers.csproj" />
   </ItemGroup>

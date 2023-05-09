@@ -4,7 +4,7 @@ namespace EC.Api.Calculator.Domain.Services.CalculationFormatters.Additions
 {
     public class AdditionCalculationFormatter : IAdditionCalculationFormatter
     {
-        public string FormatOperation(Addition addition) =>
+        public string FormatCalculation(Addition addition) =>
             $"{string.Join(" + ", addition.Addends)} = {addition.Sum}";
     }
 }

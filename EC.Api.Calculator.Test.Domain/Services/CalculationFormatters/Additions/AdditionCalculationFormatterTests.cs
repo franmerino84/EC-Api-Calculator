@@ -12,7 +12,7 @@ namespace EC.Api.Calculator.Test.Domain.Services.CalculationFormatters.Additions
         [TestCase("1 + 2 + 3 + 4 = 10", 1, 2, 3, 4)]
         public void FormatOperation_Expected_Formatting(string expected, params int[] addends)
         {
-            var result = new AdditionCalculationFormatter().FormatOperation(new Addition(addends));
+            var result = new AdditionCalculationFormatter().FormatCalculation(new Addition(addends));
 
             Assert.That(result, Is.EqualTo(expected));
         }

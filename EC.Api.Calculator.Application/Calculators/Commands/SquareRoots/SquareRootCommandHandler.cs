@@ -39,7 +39,7 @@ namespace EC.Api.Calculator.Application.Calculators.Commands.SquareRoots
 
                 if (request.TrackingId != null)
                 {
-                    var journalEntry = new JournalEntry(request.TrackingId, _operationFormatter.FormatOperatorName(), _calculationFormatter.FormatOperation(squareRoot));
+                    var journalEntry = new JournalEntry(request.TrackingId, _operationFormatter.FormatOperatorName(), _calculationFormatter.FormatCalculation(squareRoot));
 
                     try
                     {

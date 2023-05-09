@@ -12,7 +12,7 @@ namespace EC.Api.Calculator.Test.Domain.Services.CalculationFormatters.Divisions
         [TestCase("5 / 2 = 2 % 1", 5, 2)]
         public void FormatOperation_Expected_Formatting(string expected, int dividend, int divisor)
         {
-            var result = new DivisionCalculationFormatter().FormatOperation(new Division(dividend, divisor));
+            var result = new DivisionCalculationFormatter().FormatCalculation(new Division(dividend, divisor));
 
             Assert.That(result, Is.EqualTo(expected));
         }

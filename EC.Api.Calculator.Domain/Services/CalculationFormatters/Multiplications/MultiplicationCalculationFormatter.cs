@@ -5,7 +5,7 @@ namespace EC.Api.Calculator.Domain.Services.OperationFormatters
 {
     public class MultiplicationCalculationFormatter : IMultiplicationCalculationFormatter
     {
-        public string FormatOperation(Multiplication operation) => 
+        public string FormatCalculation(Multiplication operation) => 
             $"{string.Join(" * ", operation.Factors)} = {operation.Product}";
     }
 }

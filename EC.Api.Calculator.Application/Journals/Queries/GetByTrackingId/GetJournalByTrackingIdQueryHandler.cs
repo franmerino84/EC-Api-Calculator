@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using EC.Api.Calculator.Application.Exceptions;
 using EC.Api.Calculator.Domain.Abstractions.Persistence.Repositories;
+using EC.Api.Calculator.Domain.Entities;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
@@ -22,7 +24,17 @@ namespace EC.Api.Calculator.Application.Journals.Queries.GetByTrackingId
         {
             Validate(request);
 
-            var journalEntries = _journalEntryRepository.GetByTrackingId(request.TrackingId);
+            IEnumerable<JournalEntry> journalEntries;
+
+            try
+            {
+                journalEntries = _journalEntryRepository.GetByTrackingId(request.TrackingId);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Couldn't retrieve the journal entries of a tracking id.");
+                throw new UnexpectedApplicationException(null, ex);
+            }
 
             var result = new GetJournalByTrackingIdQueryResponse(_mapper.Map<IEnumerable<JournalOperation>>(journalEntries));
 
@@ -42,7 +54,7 @@ namespace EC.Api.Calculator.Application.Journals.Queries.GetByTrackingId
             if (string.IsNullOrWhiteSpace(request.TrackingId))
             {
                 _logger.LogError("Tried to retrieve a journal with tracking id with value null or white space passed as parameter.");
-                throw new DivideByZeroException("TrackingId cannot be null or white space");
+                throw new ArgumentException("TrackingId cannot be null or white space");
             }
         }
     }

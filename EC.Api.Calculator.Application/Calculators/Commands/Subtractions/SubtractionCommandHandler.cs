@@ -36,7 +36,7 @@ namespace EC.Api.Calculator.Application.Calculators.Commands.Subtractions
 
             if (request.TrackingId != null)
             {
-                var journalEntry = new JournalEntry(request.TrackingId, _operationFormatter.FormatOperatorName(), _calculationFormatter.FormatOperation(subtraction));
+                var journalEntry = new JournalEntry(request.TrackingId, _operationFormatter.FormatOperatorName(), _calculationFormatter.FormatCalculation(subtraction));
 
                 try
                 {

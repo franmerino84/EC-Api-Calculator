@@ -36,7 +36,7 @@ namespace EC.Api.Calculator.Application.Calculators.Commands.Additions
 
             if (request.TrackingId != null)
             {
-                var journalEntry = new JournalEntry(request.TrackingId, _operationFormatter.FormatOperatorName(), _calculationFormatter.FormatOperation(addition));
+                var journalEntry = new JournalEntry(request.TrackingId, _operationFormatter.FormatOperatorName(), _calculationFormatter.FormatCalculation(addition));
 
                 try
                 {

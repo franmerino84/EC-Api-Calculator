@@ -5,7 +5,7 @@ namespace EC.Api.Calculator.Domain.Services.OperationFormatters
 {
     public class SubtractionCalculationFormatter : ISubtractionCalculationFormatter
     {
-        public string FormatOperation(Subtraction operation) => 
+        public string FormatCalculation(Subtraction operation) => 
             $"{operation.Minuend} - {operation.Subtrahend} = {operation.Difference}";
     }
 }

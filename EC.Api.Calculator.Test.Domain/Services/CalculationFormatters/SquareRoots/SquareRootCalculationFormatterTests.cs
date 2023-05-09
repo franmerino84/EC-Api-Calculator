@@ -12,7 +12,7 @@ namespace EC.Api.Calculator.Test.Domain.Services.CalculationFormatters.SquareRoo
         [TestCase("Sqrt 9 = 3", 9)]
         public void FormatOperation_Expected_Formatting(string expected, int number)
         {
-            var result = new SquareRootCalculationFormatter().FormatOperation(new SquareRoot(number));
+            var result = new SquareRootCalculationFormatter().FormatCalculation(new SquareRoot(number));
 
             Assert.That(result, Is.EqualTo(expected));
         }

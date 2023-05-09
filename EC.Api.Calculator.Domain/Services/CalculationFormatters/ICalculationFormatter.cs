@@ -4,6 +4,6 @@ namespace EC.Api.Calculator.Domain.Services.OperationFormatters
 {
     public interface ICalculationFormatter<T> where T : Operation
     {
-        string FormatOperation(T operation);
+        string FormatCalculation(T operation);
     }
 }

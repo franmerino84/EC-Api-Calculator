@@ -12,7 +12,7 @@ namespace EC.Api.Calculator.Test.Domain.Services.CalculationFormatters.Multiplic
         [TestCase("1 * 2 * 3 * 4 = 24", 1, 2, 3, 4)]
         public void FormatOperation_Expected_Formatting(string expected, params int[] factors)
         {
-            var result = new MultiplicationCalculationFormatter().FormatOperation(new Multiplication(factors));
+            var result = new MultiplicationCalculationFormatter().FormatCalculation(new Multiplication(factors));
 
             Assert.That(result, Is.EqualTo(expected));
         }

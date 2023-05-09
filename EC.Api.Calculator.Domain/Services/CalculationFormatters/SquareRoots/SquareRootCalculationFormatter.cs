@@ -5,7 +5,7 @@ namespace EC.Api.Calculator.Domain.Services.OperationFormatters
 {
     public class SquareRootCalculationFormatter : ISquareRootCalculationFormatter
     {
-        public string FormatOperation(SquareRoot operation) => 
+        public string FormatCalculation(SquareRoot operation) => 
             $"Sqrt {operation.Number} = {operation.Square}";
     }
 }

@@ -13,7 +13,7 @@ namespace EC.Api.Calculator.Test.Domain.Services.CalculationFormatters.Subtracti
         [TestCase("5 - 2 = 3", 5, 2)]
         public void FormatOperation_Expected_Formatting(string expected, int minuend, int subtrahend)
         {
-            var result = new SubtractionCalculationFormatter().FormatOperation(new Subtraction(minuend, subtrahend));
+            var result = new SubtractionCalculationFormatter().FormatCalculation(new Subtraction(minuend, subtrahend));
 
             Assert.That(result, Is.EqualTo(expected));
         }

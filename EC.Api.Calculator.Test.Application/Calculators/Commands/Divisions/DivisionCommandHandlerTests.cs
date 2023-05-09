@@ -1,36 +1,37 @@
 ﻿using AutoMapper;
-using EC.Api.Calculator.Application.Calculators.Commands.Additions;
+using EC.Api.Calculator.Application.Calculators.Commands.Divisions;
+using EC.Api.Calculator.Application.Calculators.Commands.Divisions;
 using EC.Api.Calculator.Application.Exceptions;
 using EC.Api.Calculator.Domain.Abstractions.Persistence.Repositories;
 using EC.Api.Calculator.Domain.Entities;
-using EC.Api.Calculator.Domain.Services.CalculationFormatters.Additions;
-using EC.Api.Calculator.Domain.Services.OperationFormatters.Additions;
+using EC.Api.Calculator.Domain.Services.CalculationFormatters.Divisions;
+using EC.Api.Calculator.Domain.Services.OperationFormatters.Divisions;
 using EC.Api.Calculator.Domain.ValueObjects.Operations;
 using EC.Api.Calculator.Test.Helpers;
 using Microsoft.Extensions.Logging;
 using Moq;
 
-namespace EC.Api.Calculator.Test.Application.Calculators.Commands.Additions
+namespace EC.Api.Calculator.Test.Application.Calculators.Commands.Divisions
 {
-    public class AdditionCommandHandlerTests
+    public class DivisionCommandHandlerTests
     {
-        private AdditionCommandHandler _handler;
+        private DivisionCommandHandler _handler;
         private Mock<IJournalEntryRepository> _repositoryMock;
         private Mock<IMapper> _mapperMock;
-        private Mock<ILogger<AdditionCommandHandler>> _loggerMock;
-        private Mock<IAdditionOperationFormatter> _operationFormatterMock;
-        private Mock<IAdditionCalculationFormatter> _calculationFormatterMock;
+        private Mock<ILogger<DivisionCommandHandler>> _loggerMock;
+        private Mock<IDivisionOperationFormatter> _operationFormatterMock;
+        private Mock<IDivisionCalculationFormatter> _calculationFormatterMock;
 
         [SetUp]
         public void SetUp()
         {
             _repositoryMock = new Mock<IJournalEntryRepository>();
             _mapperMock = new Mock<IMapper>();
-            _loggerMock = new Mock<ILogger<AdditionCommandHandler>>();
-            _operationFormatterMock = new Mock<IAdditionOperationFormatter>();
-            _calculationFormatterMock = new Mock<IAdditionCalculationFormatter>();
+            _loggerMock = new Mock<ILogger<DivisionCommandHandler>>();
+            _operationFormatterMock = new Mock<IDivisionOperationFormatter>();
+            _calculationFormatterMock = new Mock<IDivisionCalculationFormatter>();
 
-            _handler = new AdditionCommandHandler(_repositoryMock.Object, _mapperMock.Object, _loggerMock.Object, _operationFormatterMock.Object,
+            _handler = new DivisionCommandHandler(_repositoryMock.Object, _mapperMock.Object, _loggerMock.Object, _operationFormatterMock.Object,
                 _calculationFormatterMock.Object);
         }
 
@@ -41,34 +42,28 @@ namespace EC.Api.Calculator.Test.Application.Calculators.Commands.Additions
         }
 
         [Test]
-        public void Handle_Addends_Null_Throws_ArgumentException()
+        public void Handle_Divisor_Zero_Throws_DivideByZeroException()
         {
-            Assert.Throws<ArgumentException>(() => _handler.Handle(new AdditionCommand(null), default));
+            Assert.Throws<DivideByZeroException>(() => _handler.Handle(new DivisionCommand(5, 0), default));
         }
 
         [Test]
-        public void Handle_Addends_Less_Than_2_Elements_Throws_NotEnoughOperandsException()
+        public void Handle_Calls_Mapper_Map_Over_Division()
         {
-            Assert.Throws<NotEnoughOperandsException>(() => _handler.Handle(new AdditionCommand(new List<int> { 1 }), default));
-        }
-
-        [Test]
-        public void Handle_Calls_Mapper_Map_Over_Addition()
-        {
-            var command = new AdditionCommand(new List<int> { 1, 2, 3 });
+            var command = new DivisionCommand(5, 2);
 
             _handler.Handle(command, default);
 
-            _mapperMock.Verify(x => x.Map<AdditionCommandResponse>(It.IsAny<Addition>()));
+            _mapperMock.Verify(x => x.Map<DivisionCommandResponse>(It.IsAny<Division>()));
         }
 
         [Test]
-        public async Task Handle_Returns_Mapped_Addition()
+        public async Task Handle_Returns_Mapped_Division()
         {
-            var command = new AdditionCommand(new List<int> { 1, 2, 3 });
-            var response = new AdditionCommandResponse(6);
+            var command = new DivisionCommand(5, 2);
+            var response = new DivisionCommandResponse(2, 1);
 
-            _mapperMock.Setup(x => x.Map<AdditionCommandResponse>(It.IsAny<Addition>())).Returns(response);
+            _mapperMock.Setup(x => x.Map<DivisionCommandResponse>(It.IsAny<Division>())).Returns(response);
             var result = await _handler.Handle(command, default);
 
             Assert.That(result, Is.EqualTo(response));
@@ -77,7 +72,7 @@ namespace EC.Api.Calculator.Test.Application.Calculators.Commands.Additions
         [Test]
         public async Task Handle_Logs_Information_Success()
         {
-            var command = new AdditionCommand(new List<int> { 1, 2, 3 });
+            var command = new DivisionCommand(5, 2);
 
             await _handler.Handle(command, default);
 
@@ -87,8 +82,8 @@ namespace EC.Api.Calculator.Test.Application.Calculators.Commands.Additions
         [Test]
         public async Task Handle_Without_TrackingId_Doesnt_Insert_JournalEntry()
         {
-            var command = new AdditionCommand(new List<int> { 1, 2, 3 });
-            var response = new AdditionCommandResponse(6);
+            var command = new DivisionCommand(5, 2);
+            var response = new DivisionCommandResponse(2, 1);
 
             var result = await _handler.Handle(command, default);
 
@@ -99,8 +94,8 @@ namespace EC.Api.Calculator.Test.Application.Calculators.Commands.Additions
         public async Task Handle_With_TrackingId_Does_Insert_JournalEntry_Containing_TrackingId()
         {
             var trackingId = "trackingId";
-            var command = new AdditionCommand(new List<int> { 1, 2, 3 }, trackingId);
-            var response = new AdditionCommandResponse(6);
+            var command = new DivisionCommand(5, 2, trackingId);
+            var response = new DivisionCommandResponse(2, 1);
 
             var result = await _handler.Handle(command, default);
 
@@ -111,8 +106,8 @@ namespace EC.Api.Calculator.Test.Application.Calculators.Commands.Additions
         public async Task Handle_With_TrackingId_Calls_OperationFormatter_FormatOperatorName()
         {
             var trackingId = "trackingId";
-            var command = new AdditionCommand(new List<int> { 1, 2, 3 }, trackingId);
-            var response = new AdditionCommandResponse(6);
+            var command = new DivisionCommand(5, 2, trackingId);
+            var response = new DivisionCommandResponse(2, 1);
 
             var result = await _handler.Handle(command, default);
 
@@ -123,19 +118,19 @@ namespace EC.Api.Calculator.Test.Application.Calculators.Commands.Additions
         public async Task Handle_With_TrackingId_Calls_CalculationFormatter_FormatCalculation()
         {
             var trackingId = "trackingId";
-            var command = new AdditionCommand(new List<int> { 1, 2, 3 }, trackingId);
-            var response = new AdditionCommandResponse(6);
+            var command = new DivisionCommand(5, 2, trackingId);
+            var response = new DivisionCommandResponse(2, 1);
 
             var result = await _handler.Handle(command, default);
 
-            _calculationFormatterMock.Verify(x => x.FormatCalculation(It.IsAny<Addition>()));
+            _calculationFormatterMock.Verify(x => x.FormatCalculation(It.IsAny<Division>()));
         }
 
         [Test]
         public async Task Handle_With_TrackingId_Logs_Information_Stored_Success()
         {
             var trackingId = "trackingId";
-            var command = new AdditionCommand(new List<int> { 1, 2, 3 }, trackingId);
+            var command = new DivisionCommand(5, 2, trackingId);
 
             await _handler.Handle(command, default);
 
@@ -146,8 +141,8 @@ namespace EC.Api.Calculator.Test.Application.Calculators.Commands.Additions
         public void Handle_With_TrackingId_And_Repository_Throwing_Throws_UnexpectedApplicationException()
         {
             var trackingId = "trackingId";
-            var command = new AdditionCommand(new List<int> { 1, 2, 3 }, trackingId);
-            var response = new AdditionCommandResponse(6);
+            var command = new DivisionCommand(5, 2, trackingId);
+            var response = new DivisionCommandResponse(2, 1);
 
             _repositoryMock.Setup(x => x.Insert(It.IsAny<JournalEntry>())).Throws<Exception>();
 
@@ -158,8 +153,8 @@ namespace EC.Api.Calculator.Test.Application.Calculators.Commands.Additions
         public async Task Handle_With_TrackingId_And_Repository_Throwing_Logs_Error()
         {
             var trackingId = "trackingId";
-            var command = new AdditionCommand(new List<int> { 1, 2, 3 }, trackingId);
-            var response = new AdditionCommandResponse(6);
+            var command = new DivisionCommand(5, 2, trackingId);
+            var response = new DivisionCommandResponse(2, 1);
 
             _repositoryMock.Setup(x => x.Insert(It.IsAny<JournalEntry>())).Throws<Exception>();
 
