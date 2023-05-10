@@ -28,7 +28,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C08D5392-57E2-4E4A-998F-0B0FF908C313}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
-		Todo.txt = Todo.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.5. Helpers", "5.5. Helpers", "{83BE5999-F2AF-4855-A717-26B80E7FCF68}"
@@ -43,11 +42,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.4. Presentation", "5.4. P
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.3. Infrastructure", "5.3. Infrastructure", "{563F35DE-A909-4F96-803C-CCD252E6CBB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EC.Api.Calculator.Test.Infrastructure.Persistence", "EC.Api.Calculator.Test.Infrastructure.Persistence\EC.Api.Calculator.Test.Infrastructure.Persistence.csproj", "{C825244C-9EF5-4002-9A19-4AFC6AA1E29D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EC.Api.Calculator.Test.Infrastructure.Persistence", "EC.Api.Calculator.Test.Infrastructure.Persistence\EC.Api.Calculator.Test.Infrastructure.Persistence.csproj", "{C825244C-9EF5-4002-9A19-4AFC6AA1E29D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.2. Application", "5.2. Application", "{78C70DFE-46B4-43FD-B4A9-FB9B233A13B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EC.Api.Calculator.Test.Application", "EC.Api.Calculator.Test.Application\EC.Api.Calculator.Test.Application.csproj", "{B4CE7D1D-DC66-4B94-AF6B-6046A0FBDF25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EC.Api.Calculator.Test.Application", "EC.Api.Calculator.Test.Application\EC.Api.Calculator.Test.Application.csproj", "{B4CE7D1D-DC66-4B94-AF6B-6046A0FBDF25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
