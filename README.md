@@ -10,7 +10,7 @@ In these lines I will try to explain some of the decisions taken to solve the co
 ## Application usage
 I've built the application as a Web API. It can be run through Visual Studio, or well using the command 'dotnet Ec.Api.Calculator.Presentation.WebApi.dll' over the binaries folder.
 
-I've used Visual Studio 2022, with projects that run over .NET 6, so make sure you have installed the latest version to run it. Probably it works over previous IDE, or even the projects can be moved to .NET 6, but I cannot ensure since I haven't tested it.
+I've used Visual Studio 2022, with projects that run over .NET 6, so make sure you have installed the latest version to run it. Probably it works over previous IDE, but I cannot ensure since I haven't tested it.
 
 The endpoints and their corresponding body and headers are the same described in the pdf you provided.
 
@@ -119,7 +119,7 @@ I've put the responsibility of logging in the Application layer.
 I've tried to follow SOLID guidelines across the whole solution.
 
 #### Single responsibility principle
-Each class, except for the repositories, has only one responsibility. I've tried to separate through use cases all the functionality so they are not so big an have a comprehensive semantic.
+Each class, except for the repositorie, has only one responsibility. I've tried to separate through use cases all the functionality so they are not so big an have a comprehensive semantic.
 
 #### Open-closed principle
 Not much inheritance in the code.
