@@ -1,8 +1,2 @@
-Tests api	
-	application
-		addition
-		rest
-	test dependencies?
 Tests cliente
-Unit of work?
 Readmes

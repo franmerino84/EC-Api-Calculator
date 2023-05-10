@@ -45,7 +45,7 @@ namespace EC.Api.Calculator.Test.Application.Journals.Queries.GetByTrackingId
 
 
         [Test]
-        public void Handle_Calls_Mapper_Map_Over_SquareRoot()
+        public void Handle_Calls_Mapper_Map_Over_JournalEntries()
         {
             var command = new GetJournalByTrackingIdQuery("trackingId");
 
@@ -54,69 +54,53 @@ namespace EC.Api.Calculator.Test.Application.Journals.Queries.GetByTrackingId
             _mapperMock.Verify(x => x.Map<IEnumerable<JournalOperation>>(It.IsAny<IEnumerable<JournalEntry>>()));
         }
 
-        /*
+        
 
         [Test]
-        public async Task Handle_Returns_Mapped_SquareRoot()
+        public async Task Handle_Returns_Mapped_JournalOperations()
         {
-            var command = new GetJournalByTrackingIdQuery(9);
-            var response = new GetJournalByTrackingIdQueryResponse(3);
+            var command = new GetJournalByTrackingIdQuery("trackingId");
+            var journalOperation = new JournalOperation("operation", "calculation", DateTime.Now);
+            var journalOperations = new List<JournalOperation> { journalOperation };
+            var response = new GetJournalByTrackingIdQueryResponse(new List<JournalOperation> { journalOperation });
 
-            _mapperMock.Setup(x => x.Map<GetJournalByTrackingIdQueryResponse>(It.IsAny<SquareRoot>())).Returns(response);
+            _mapperMock.Setup(x => x.Map<IEnumerable<JournalOperation>>(It.IsAny<IEnumerable<JournalEntry>>())).Returns(journalOperations);
+            
             var result = await _handler.Handle(command, default);
 
-            Assert.That(result, Is.EqualTo(response));
+            Assert.That(result.Operations, Is.EquivalentTo(response.Operations));
         }
 
         [Test]
         public async Task Handle_Logs_Information_Success()
         {
-            var command = new GetJournalByTrackingIdQuery(9);
+            var command = new GetJournalByTrackingIdQuery("trackingId");
 
             await _handler.Handle(command, default);
 
-            _loggerMock.VerifyLogContains(LogLevel.Information, "successfully calculated");
+            _loggerMock.VerifyLogContains(LogLevel.Information, "successfully retrieved");
         }
 
+        
+       
         [Test]
-        public async Task Handle_Without_TrackingId_Doesnt_Insert_JournalEntry()
+        public async Task Handle_Calls_Repository_GetTrackingId()
         {
-            var command = new GetJournalByTrackingIdQuery(9);
-            var response = new GetJournalByTrackingIdQueryResponse(3);
+            var trackingId = "trackingId";
+            var command = new GetJournalByTrackingIdQuery(trackingId);
 
             var result = await _handler.Handle(command, default);
 
-            _repositoryMock.Verify(x => x.Insert(It.IsAny<JournalEntry>()), Times.Never());
+            _repositoryMock.Verify(x => x.GetByTrackingId(trackingId));
         }
-
+        
         [Test]
-        public async Task Handle_With_TrackingId_Does_Insert_JournalEntry_Containing_TrackingId()
+        public void Handle_With_Repository_Throwing_Throws_UnexpectedApplicationException()
         {
-            var command = new GetJournalByTrackingIdQuery(9);
-            var response = new GetJournalByTrackingIdQueryResponse(3);
+            var trackingId = "trackingId";
+            var command = new GetJournalByTrackingIdQuery(trackingId);
 
-            var result = await _handler.Handle(command, default);
-
-            _repositoryMock.Verify(x => x.Insert(It.Is<JournalEntry>(x => x.TrackingId == trackingId)));
-        }
-
-        [Test]
-        public async Task Handle_With_TrackingId_Logs_Information_Stored_Success()
-        {
-            var command = new GetJournalByTrackingIdQuery(9);
-
-            await _handler.Handle(command, default);
-
-            _loggerMock.VerifyLogContains(LogLevel.Information, "successfully stored");
-        }
-
-        [Test]
-        public void Handle_With_TrackingId_And_Repository_Throwing_Throws_UnexpectedApplicationException()
-        {
-            var command = new GetJournalByTrackingIdQuery(9);
-            var response = new GetJournalByTrackingIdQueryResponse(3);
-
-            _repositoryMock.Setup(x => x.Insert(It.IsAny<JournalEntry>())).Throws<Exception>();
+            _repositoryMock.Setup(x => x.GetByTrackingId(trackingId)).Throws<Exception>();
 
             Assert.ThrowsAsync<UnexpectedApplicationException>(() => _handler.Handle(command, default));
         }
@@ -124,10 +108,11 @@ namespace EC.Api.Calculator.Test.Application.Journals.Queries.GetByTrackingId
         [Test]
         public async Task Handle_With_TrackingId_And_Repository_Throwing_Logs_Error()
         {
-            var command = new GetJournalByTrackingIdQuery(9);
-            var response = new GetJournalByTrackingIdQueryResponse(3);
+            var trackingId = "trackingId";
+            var command = new GetJournalByTrackingIdQuery(trackingId);
 
-            _repositoryMock.Setup(x => x.Insert(It.IsAny<JournalEntry>())).Throws<Exception>();
+
+            _repositoryMock.Setup(x => x.GetByTrackingId(trackingId)).Throws<Exception>();
 
             try
             {
@@ -137,7 +122,7 @@ namespace EC.Api.Calculator.Test.Application.Journals.Queries.GetByTrackingId
 
             _loggerMock.VerifyLogContains(LogLevel.Error, "Couldn't");
         }
-        */
+        
 
 
     }
